@@ -282,8 +282,9 @@ systems-architecture-spec/
 
 - Shared fixture corpus (`examples/fixtures/{valid,invalid}`) exercised by the Go validator, JSON Schema validation, and Zod — behavioral conformance, not just type generation.
 - Round-trip test: Go → JSON → (schema validate) → Zod parse → JSON → Go; semantic equality required.
-- `schemakit lint --property-case camelCase` in CI (SAS is an API/document-format schema surface per org conventions).
+- `schemakit lint --property-case camelCase` in CI, **default profile**, matching established org practice (`deppolicy`). The `scale` profile additionally rejects any use of `additionalProperties` as a value schema — including the strict, homogeneous `map[string]string` on `Boundary.Attributes` — which is a stronger bar than the static-type-friendly principle requires: the principle bans dynamic, heterogeneous, ambiguous shapes (`map[string]any`, unions), not a fixed-value-type map that Go, Rust, and TypeScript (`Record<string,string>`) all represent identically and unambiguously.
 - `tools.go` with `//go:build tools` blank imports so `go mod tidy` keeps the schema generator's deps (standard gen/main.go pattern).
+- TypeScript/Zod generation follows the proven `multi-agent-spec` pipeline: `json-schema-to-zod` per `$def` (topologically ordered, refs inlined for self-contained output) plus one generation pass for the root document type, keyed by name (`ArchitectureSchema`) since `invopop/jsonschema`'s `ExpandedStruct: true` inlines the root type's own properties rather than emitting it as a named `$def`.
 
 ## Dependencies
 

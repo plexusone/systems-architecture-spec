@@ -1,0 +1,73 @@
+{
+  "version": "0.1",
+  "metadata": {
+    "name": "example-system",
+    "description": "A minimal architecture used to prove Go/JSON/Zod round-trip conformance.",
+    "owner": "platform-team"
+  },
+  "nodes": [
+    {
+      "id": "api",
+      "kind": "service",
+      "name": "API",
+      "owner": "platform-team",
+      "criticality": "tier0",
+      "technology": { "provider": "aws", "service": "ecs" },
+      "identity": { "type": "workload", "mechanism": "spiffe", "ref": "spiffe://acme/api" },
+      "boundaries": ["vpc-prod", "trust-application"],
+      "assurance": { "tests": ["test://integration/api"] },
+      "refs": [{ "type": "openapi", "ref": "openapi://api/v1" }],
+      "extensions": {
+        "security": { "trustZone": "application" },
+        "sre": { "availabilityTarget": "99.99%" }
+      }
+    },
+    {
+      "id": "db",
+      "kind": "data.database",
+      "name": "Orders DB"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "api-to-db",
+      "from": "api",
+      "to": "db",
+      "kind": "data.access",
+      "transport": {
+        "protocol": "tcp",
+        "port": 5432,
+        "applicationProtocol": "postgresql",
+        "encryption": "tls"
+      },
+      "operations": ["read", "create"],
+      "identity": { "nodeId": "api" },
+      "authorization": {
+        "entitlements": [
+          { "subject": "api", "action": "orders.insert", "resource": "orders-table" }
+        ]
+      },
+      "data": { "classifications": ["customer_data"] },
+      "crossesBoundaries": ["vpc-prod"],
+      "criticalPath": true,
+      "sync": "sync"
+    }
+  ],
+  "boundaries": [
+    {
+      "id": "vpc-prod",
+      "kind": "network",
+      "name": "Production VPC",
+      "attributes": { "vpc": "prod" }
+    },
+    {
+      "id": "trust-application",
+      "kind": "trust",
+      "name": "Application Trust Zone",
+      "compliance": {
+        "fedrampBoundary": true,
+        "controls": ["SC-7", "AC-3"]
+      }
+    }
+  ]
+}

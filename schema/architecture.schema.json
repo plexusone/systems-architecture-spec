@@ -1,0 +1,426 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/plexusone/systems-architecture-spec/sas/architecture",
+  "$defs": {
+    "AgentExtension": {
+      "properties": {
+        "runtime": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "Assurance": {
+      "properties": {
+        "tests": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "metrics": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "detections": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "deployment": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "Authorization": {
+      "properties": {
+        "entitlements": {
+          "items": {
+            "$ref": "#/$defs/Entitlement"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "Boundary": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "attributes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "compliance": {
+          "$ref": "#/$defs/ComplianceBoundary"
+        },
+        "extensions": {
+          "$ref": "#/$defs/Extensions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "name"
+      ]
+    },
+    "ComplianceBoundary": {
+      "properties": {
+        "fedrampBoundary": {
+          "type": "boolean"
+        },
+        "controls": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ComplianceExtension": {
+      "properties": {
+        "fedrampBoundary": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "DataFlow": {
+      "properties": {
+        "classifications": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "Entitlement": {
+      "properties": {
+        "subject": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        },
+        "conditions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "subject",
+        "action",
+        "resource"
+      ]
+    },
+    "Extensions": {
+      "properties": {
+        "security": {
+          "$ref": "#/$defs/SecurityExtension"
+        },
+        "sre": {
+          "$ref": "#/$defs/SREExtension"
+        },
+        "compliance": {
+          "$ref": "#/$defs/ComplianceExtension"
+        },
+        "agent": {
+          "$ref": "#/$defs/AgentExtension"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "ExternalRef": {
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "ref": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "type",
+        "ref"
+      ]
+    },
+    "Identity": {
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "mechanism": {
+          "type": "string"
+        },
+        "ref": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "type"
+      ]
+    },
+    "IdentityRef": {
+      "properties": {
+        "nodeId": {
+          "type": "string"
+        },
+        "identity": {
+          "$ref": "#/$defs/Identity"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "Metadata": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "Node": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "technology": {
+          "$ref": "#/$defs/Technology"
+        },
+        "identity": {
+          "$ref": "#/$defs/Identity"
+        },
+        "boundaries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "criticality": {
+          "type": "string"
+        },
+        "assurance": {
+          "$ref": "#/$defs/Assurance"
+        },
+        "refs": {
+          "items": {
+            "$ref": "#/$defs/ExternalRef"
+          },
+          "type": "array"
+        },
+        "extensions": {
+          "$ref": "#/$defs/Extensions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "name"
+      ]
+    },
+    "Relationship": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "transport": {
+          "$ref": "#/$defs/Transport"
+        },
+        "operations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "identity": {
+          "$ref": "#/$defs/IdentityRef"
+        },
+        "authorization": {
+          "$ref": "#/$defs/Authorization"
+        },
+        "data": {
+          "$ref": "#/$defs/DataFlow"
+        },
+        "crossesBoundaries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "criticalPath": {
+          "type": "boolean"
+        },
+        "sync": {
+          "type": "string"
+        },
+        "assurance": {
+          "$ref": "#/$defs/Assurance"
+        },
+        "protocolRef": {
+          "type": "string"
+        },
+        "extensions": {
+          "$ref": "#/$defs/Extensions"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "id",
+        "from",
+        "to",
+        "kind"
+      ]
+    },
+    "SREExtension": {
+      "properties": {
+        "availabilityTarget": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "SecurityExtension": {
+      "properties": {
+        "trustZone": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "Technology": {
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "service": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "provider"
+      ]
+    },
+    "Transport": {
+      "properties": {
+        "protocol": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer"
+        },
+        "applicationProtocol": {
+          "type": "string"
+        },
+        "encryption": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    }
+  },
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "metadata": {
+      "$ref": "#/$defs/Metadata"
+    },
+    "nodes": {
+      "items": {
+        "$ref": "#/$defs/Node"
+      },
+      "type": "array"
+    },
+    "relationships": {
+      "items": {
+        "$ref": "#/$defs/Relationship"
+      },
+      "type": "array"
+    },
+    "boundaries": {
+      "items": {
+        "$ref": "#/$defs/Boundary"
+      },
+      "type": "array"
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "required": [
+    "version",
+    "nodes"
+  ]
+}

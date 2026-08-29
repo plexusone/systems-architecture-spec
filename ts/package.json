@@ -1,0 +1,58 @@
+{
+  "name": "@plexusone/systems-architecture-spec",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for Systems Architecture Spec (SAS) - Zod schemas and types generated from the Go-first canonical model",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "generate": "node scripts/generate-schemas.mjs",
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run generate && npm run clean && npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "systems-architecture",
+    "architecture-as-code",
+    "zod",
+    "schema",
+    "validation"
+  ],
+  "author": "PlexusOne",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/plexusone/systems-architecture-spec.git",
+    "directory": "ts"
+  },
+  "bugs": {
+    "url": "https://github.com/plexusone/systems-architecture-spec/issues"
+  },
+  "homepage": "https://github.com/plexusone/systems-architecture-spec#readme",
+  "dependencies": {
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "json-schema-to-zod": "^2.7.0",
+    "typescript": "^5.0.0",
+    "vitest": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
