@@ -51,6 +51,20 @@ func TestBoundaryByID(t *testing.T) {
 	}
 }
 
+func TestViewByID(t *testing.T) {
+	arch := testCrossingArchitecture()
+	arch.Views = []View{{ID: "context", Name: "Context View"}}
+
+	v, ok := arch.ViewByID("context")
+	if !ok || v.Name != "Context View" {
+		t.Fatalf("expected to find view context, got %+v ok=%v", v, ok)
+	}
+
+	if _, ok := arch.ViewByID("missing"); ok {
+		t.Fatal("expected missing view lookup to fail")
+	}
+}
+
 func TestCrossedBoundaries(t *testing.T) {
 	arch := testCrossingArchitecture()
 

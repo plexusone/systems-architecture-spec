@@ -52,17 +52,10 @@ func newValidateCmd() *cobra.Command {
 }
 
 func parseProfiles(flag string) []validate.Profile {
-	if flag == "" {
-		return nil
-	}
-	parts := strings.Split(flag, ",")
-	profiles := make([]validate.Profile, 0, len(parts))
-	for _, p := range parts {
-		p = strings.TrimSpace(p)
-		if p == "" {
-			continue
-		}
-		profiles = append(profiles, validate.Profile(p))
+	values := splitCSV(flag)
+	profiles := make([]validate.Profile, len(values))
+	for i, v := range values {
+		profiles[i] = validate.Profile(v)
 	}
 	return profiles
 }

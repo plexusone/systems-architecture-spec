@@ -25,6 +25,16 @@ func (a *Architecture) BoundaryByID(id string) (*Boundary, bool) {
 	return nil, false
 }
 
+// ViewByID looks up a declared view by ID.
+func (a *Architecture) ViewByID(id string) (*View, bool) {
+	for i := range a.Views {
+		if a.Views[i].ID == id {
+			return &a.Views[i], true
+		}
+	}
+	return nil, false
+}
+
 // CrossedBoundaries derives which boundaries a relationship crosses from
 // its endpoints' declared membership: a relationship crosses boundary B
 // when exactly one of its From/To nodes is a member of B. This is

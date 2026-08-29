@@ -8,5 +8,6 @@ func newRootCmd() *cobra.Command {
 		Short: "Systems Architecture Spec — a machine-readable semantic model for systems architecture",
 	}
 	cmd.AddCommand(newValidateCmd())
+	cmd.AddCommand(newViewCmd())
 	return cmd
 }
