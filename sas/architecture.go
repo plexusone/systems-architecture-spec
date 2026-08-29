@@ -29,6 +29,9 @@ type Architecture struct {
 	// architecture.
 	Nodes []Node `json:"nodes"`
 
+	// Relationships lists every directed edge between nodes.
+	Relationships []Relationship `json:"relationships,omitempty"`
+
 	// Boundaries lists every network, trust, environment, account,
 	// region, compliance, and organization boundary. Nodes reference
 	// boundaries by ID; membership is many-to-many.

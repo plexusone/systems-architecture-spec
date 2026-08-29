@@ -36,6 +36,31 @@ func TestArchitectureRoundTrip(t *testing.T) {
 				Name: "Orders DB",
 			},
 		},
+		Relationships: []Relationship{
+			{
+				ID:   "api-to-db",
+				From: "api",
+				To:   "db",
+				Kind: RelationKindDataAccess,
+				Transport: &Transport{
+					Protocol:            "tcp",
+					Port:                5432,
+					ApplicationProtocol: "postgresql",
+					Encryption:          "tls",
+				},
+				Operations: []Operation{OperationRead, OperationCreate},
+				Identity:   &IdentityRef{NodeID: "api"},
+				Authorization: &Authorization{
+					Entitlements: []Entitlement{
+						{Subject: "api", Action: "orders.insert", Resource: "orders-table"},
+					},
+				},
+				Data:              &DataFlow{Classifications: []string{"customer_data"}},
+				CrossesBoundaries: []string{"vpc-prod"},
+				CriticalPath:      true,
+				Sync:              SyncModeSync,
+			},
+		},
 		Boundaries: []Boundary{
 			{
 				ID:         "vpc-prod",
@@ -82,6 +107,16 @@ func TestArchitectureRoundTrip(t *testing.T) {
 	}
 	if len(decoded.Boundaries) != 2 {
 		t.Fatalf("expected 2 boundaries, got %d", len(decoded.Boundaries))
+	}
+	if len(decoded.Relationships) != 1 {
+		t.Fatalf("expected 1 relationship, got %d", len(decoded.Relationships))
+	}
+	rel := decoded.Relationships[0]
+	if rel.Transport == nil || rel.Transport.ApplicationProtocol != "postgresql" {
+		t.Fatalf("expected relationship transport applicationProtocol postgresql, got %+v", rel.Transport)
+	}
+	if len(rel.Operations) != 2 || rel.Operations[0] != OperationRead || rel.Operations[1] != OperationCreate {
+		t.Fatalf("expected operations [read create], got %v", rel.Operations)
 	}
 }
 
