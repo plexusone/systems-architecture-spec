@@ -1,0 +1,6 @@
+{
+  "metadata": {
+    "name": "broken-document",
+    "description": "Structurally invalid: missing the required version and nodes fields entirely."
+  }
+}
