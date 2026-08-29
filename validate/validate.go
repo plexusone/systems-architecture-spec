@@ -37,6 +37,7 @@ func Validate(arch *sas.Architecture, profiles ...Profile) []Finding {
 			findings = append(findings, checkDeployment(arch)...)
 		case ProfileSecurity:
 			findings = append(findings, checkSecurity(arch)...)
+			findings = append(findings, checkLaunchReadiness(arch)...)
 		case ProfileThreatModel:
 			findings = append(findings, checkThreatModel(arch)...)
 		case ProfileSRE:

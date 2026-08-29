@@ -19,7 +19,13 @@ const (
 	ProfileDeployment Profile = "deployment"
 
 	// ProfileSecurity requires identity and encryption on boundary
-	// crossings, and entitlements on relationships that write.
+	// crossings, entitlements on relationships that write, and — for
+	// internet-facing relationships (traffic entering the architecture
+	// from a human actor or an external system, not the architecture
+	// calling out) — TLS, identity, data classification, and an owner on
+	// the target node. This is the go-live gate: `sas validate --profile
+	// security` is meant to be the single command a launch checklist
+	// runs before a portfolio web app ships to production.
 	ProfileSecurity Profile = "security"
 
 	// ProfileThreatModel requires data classifications on relationships
