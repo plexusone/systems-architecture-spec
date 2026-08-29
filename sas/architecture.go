@@ -36,4 +36,9 @@ type Architecture struct {
 	// region, compliance, and organization boundary. Nodes reference
 	// boundaries by ID; membership is many-to-many.
 	Boundaries []Boundary `json:"boundaries,omitempty"`
+
+	// Views lists named queries over this architecture. A view is not a
+	// separate diagram file; it selects what a rendering or analysis
+	// should include.
+	Views []View `json:"views,omitempty"`
 }

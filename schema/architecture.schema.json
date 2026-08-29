@@ -389,6 +389,46 @@
       },
       "additionalProperties": false,
       "type": "object"
+    },
+    "View": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "includeKinds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includeRelations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includeBoundaries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "groupBy": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ]
     }
   },
   "properties": {
@@ -413,6 +453,12 @@
     "boundaries": {
       "items": {
         "$ref": "#/$defs/Boundary"
+      },
+      "type": "array"
+    },
+    "views": {
+      "items": {
+        "$ref": "#/$defs/View"
       },
       "type": "array"
     }
