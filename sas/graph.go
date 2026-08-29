@@ -35,6 +35,18 @@ func (a *Architecture) ViewByID(id string) (*View, bool) {
 	return nil, false
 }
 
+// BindingsForProtocol returns every ProtocolBinding whose ProtocolRef
+// equals protocolRef, in declaration order.
+func (a *Architecture) BindingsForProtocol(protocolRef string) []ProtocolBinding {
+	var matches []ProtocolBinding
+	for _, b := range a.Bindings {
+		if b.ProtocolRef == protocolRef {
+			matches = append(matches, b)
+		}
+	}
+	return matches
+}
+
 // CrossedBoundaries derives which boundaries a relationship crosses from
 // its endpoints' declared membership: a relationship crosses boundary B
 // when exactly one of its From/To nodes is a member of B. This is

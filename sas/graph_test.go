@@ -65,6 +65,24 @@ func TestViewByID(t *testing.T) {
 	}
 }
 
+func TestBindingsForProtocol(t *testing.T) {
+	arch := testCrossingArchitecture()
+	arch.Bindings = []ProtocolBinding{
+		{ID: "b1", ProtocolRef: "pidl://oauth2-authorization-code", Participants: map[string]string{"client": "api"}},
+		{ID: "b2", ProtocolRef: "pidl://oauth2-authorization-code", Participants: map[string]string{"client": "db"}},
+		{ID: "b3", ProtocolRef: "pidl://mcp-tool-call", Participants: map[string]string{"client": "api"}},
+	}
+
+	matches := arch.BindingsForProtocol("pidl://oauth2-authorization-code")
+	if len(matches) != 2 || matches[0].ID != "b1" || matches[1].ID != "b2" {
+		t.Fatalf("expected [b1 b2], got %+v", matches)
+	}
+
+	if matches := arch.BindingsForProtocol("pidl://nonexistent"); matches != nil {
+		t.Fatalf("expected no matches, got %+v", matches)
+	}
+}
+
 func TestCrossedBoundaries(t *testing.T) {
 	arch := testCrossingArchitecture()
 

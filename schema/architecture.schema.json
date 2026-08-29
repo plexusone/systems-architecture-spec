@@ -276,6 +276,29 @@
         "name"
       ]
     },
+    "ProtocolBinding": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "protocolRef": {
+          "type": "string"
+        },
+        "participants": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "id",
+        "protocolRef",
+        "participants"
+      ]
+    },
     "Relationship": {
       "properties": {
         "id": {
@@ -459,6 +482,12 @@
     "views": {
       "items": {
         "$ref": "#/$defs/View"
+      },
+      "type": "array"
+    },
+    "bindings": {
+      "items": {
+        "$ref": "#/$defs/ProtocolBinding"
       },
       "type": "array"
     }

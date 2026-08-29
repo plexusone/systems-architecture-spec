@@ -14,10 +14,10 @@ type Metadata struct {
 }
 
 // Architecture is the canonical, top-level SAS document: a typed graph of
-// Nodes and Boundaries (and, as later RMIs land, Relationships, protocol
-// Bindings, and Views). It is the semantic model — the thing this project
-// exists to define. Diagrams, threat models, and change reports are all
-// computed from an Architecture; none of them are the Architecture.
+// Nodes, Relationships, Boundaries, protocol Bindings, and Views. It is
+// the semantic model — the thing this project exists to define. Diagrams,
+// threat models, and change reports are all computed from an
+// Architecture; none of them are the Architecture.
 type Architecture struct {
 	// Version is the SAS document schema version, e.g. "0.1".
 	Version string `json:"version"`
@@ -41,4 +41,8 @@ type Architecture struct {
 	// separate diagram file; it selects what a rendering or analysis
 	// should include.
 	Views []View `json:"views,omitempty"`
+
+	// Bindings lists protocol bindings instantiating PIDL protocol
+	// definitions with concrete SAS nodes.
+	Bindings []ProtocolBinding `json:"bindings,omitempty"`
 }
