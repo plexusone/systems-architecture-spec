@@ -1,0 +1,148 @@
+{
+  "version": "0.1",
+  "metadata": {
+    "name": "Acme Widgets",
+    "description": "A fictional example architecture — a small e-commerce SaaS with a web storefront, API, orders database, a payment provider, and GitHub OAuth login. Illustrative only: any resemblance to a real system is coincidental. Used to exercise SAS's own test suite and CLI examples (validate, view, bind, export threat-model, assure) without describing a real company's architecture.",
+    "owner": "acme-widgets-team"
+  },
+  "nodes": [
+    {
+      "id": "customer",
+      "kind": "actor",
+      "name": "Customer",
+      "identity": { "type": "human" }
+    },
+    {
+      "id": "web",
+      "kind": "service",
+      "name": "Storefront (Web)",
+      "owner": "acme-widgets-team",
+      "criticality": "tier1",
+      "boundaries": ["trust-acme-app"]
+    },
+    {
+      "id": "api",
+      "kind": "service",
+      "name": "Acme API",
+      "owner": "acme-widgets-team",
+      "criticality": "tier0",
+      "boundaries": ["trust-acme-app"]
+    },
+    {
+      "id": "db",
+      "kind": "data.database",
+      "name": "Orders Database",
+      "owner": "acme-widgets-team",
+      "criticality": "tier0",
+      "technology": { "provider": "postgresql" },
+      "boundaries": ["trust-acme-app"]
+    },
+    {
+      "id": "payment-provider",
+      "kind": "external_service",
+      "name": "Payment Provider"
+    },
+    {
+      "id": "github-oauth",
+      "kind": "external_service",
+      "name": "GitHub OAuth"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "customer-to-web",
+      "from": "customer",
+      "to": "web",
+      "kind": "calls",
+      "transport": { "applicationProtocol": "https", "encryption": "tls" },
+      "operations": ["read", "create", "update"],
+      "identity": { "nodeId": "customer" },
+      "authorization": {
+        "entitlements": [
+          { "subject": "customer", "action": "storefront.self-service", "resource": "web" }
+        ]
+      },
+      "data": { "classifications": ["customer_pii"] }
+    },
+    {
+      "id": "web-to-api",
+      "from": "web",
+      "to": "api",
+      "kind": "calls",
+      "transport": { "applicationProtocol": "https", "encryption": "tls" },
+      "operations": ["read", "create", "update"],
+      "identity": { "nodeId": "web" },
+      "authorization": {
+        "entitlements": [
+          { "subject": "web", "action": "orders.self-service", "resource": "api" }
+        ]
+      }
+    },
+    {
+      "id": "api-to-db",
+      "from": "api",
+      "to": "db",
+      "kind": "data.access",
+      "transport": { "protocol": "tcp", "port": 5432, "applicationProtocol": "postgresql", "encryption": "tls" },
+      "operations": ["read", "create", "update"],
+      "identity": { "nodeId": "api" },
+      "authorization": {
+        "entitlements": [
+          { "subject": "api", "action": "orders.rw", "resource": "db" }
+        ]
+      },
+      "data": { "classifications": ["order_data", "customer_pii"] },
+      "criticalPath": true,
+      "sync": "sync"
+    },
+    {
+      "id": "api-to-payment-provider",
+      "from": "api",
+      "to": "payment-provider",
+      "kind": "calls",
+      "transport": { "applicationProtocol": "https", "encryption": "tls" },
+      "operations": ["create", "read"],
+      "identity": { "nodeId": "api" },
+      "authorization": {
+        "entitlements": [
+          { "subject": "api", "action": "payments.charge", "resource": "payment-provider" }
+        ]
+      },
+      "data": { "classifications": ["payment_data"] },
+      "criticalPath": true
+    },
+    {
+      "id": "api-to-github-oauth",
+      "from": "api",
+      "to": "github-oauth",
+      "kind": "authenticates_to",
+      "transport": { "applicationProtocol": "https", "encryption": "tls" },
+      "identity": { "nodeId": "api" },
+      "data": { "classifications": ["credentials"] },
+      "protocolRef": "pidl://oauth2-authorization-code"
+    }
+  ],
+  "boundaries": [
+    {
+      "id": "trust-acme-app",
+      "kind": "trust",
+      "name": "Acme Widgets Application Trust Zone"
+    }
+  ],
+  "views": [
+    { "id": "context", "name": "Context" },
+    { "id": "trust-zones", "name": "Trust Zones", "groupBy": "trust" },
+    { "id": "databases", "name": "Databases", "includeKinds": ["data.database"] }
+  ],
+  "bindings": [
+    {
+      "id": "github-oauth-binding",
+      "protocolRef": "pidl://oauth2-authorization-code",
+      "participants": {
+        "client": "api",
+        "auth_server": "github-oauth",
+        "resource_server": "github-oauth"
+      }
+    }
+  ]
+}

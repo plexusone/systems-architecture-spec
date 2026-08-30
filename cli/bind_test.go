@@ -40,7 +40,7 @@ func TestBind_FullyBound(t *testing.T) {
     "version": "0.1",
     "nodes": [
       {"id": "web", "kind": "service", "name": "Web"},
-      {"id": "academyos-api", "kind": "service", "name": "API"},
+      {"id": "api", "kind": "service", "name": "API"},
       {"id": "google-oauth", "kind": "external_service", "name": "Google OAuth"}
     ],
     "bindings": [
@@ -50,7 +50,7 @@ func TestBind_FullyBound(t *testing.T) {
         "participants": {
           "user": "web",
           "browser": "web",
-          "client": "academyos-api",
+          "client": "api",
           "auth_server": "google-oauth",
           "resource_server": "google-oauth"
         }

@@ -5,6 +5,10 @@ coverage.txt
 coverage.out
 debug.test
 
+# Private notes/transcripts — this repo is public; internal design
+# discussion and any real-system detail belongs in internal-plexusone-system.
+IDEATION_CHAT*.md
+
 # Go
 *.exe
 *.exe~
