@@ -21,8 +21,54 @@ use case wants something, it belongs in a consumer, a profile, or a namespaced e
 
 ## Status
 
-Early development. See [`docs/specs/initiatives/INIT-SYSTEMSARCHITECTURESPEC-001/`](docs/specs/initiatives/INIT-SYSTEMSARCHITECTURESPEC-001/)
-for the PRD, TRD, PLAN, and ROADMAP.
+**v0.1.** The core semantic model, validation engine, three renderers, technology
+catalogs, PIDL protocol bindings, the Threat Model Spec bridge, and assurance
+coverage reporting are implemented and dogfooded end to end. See
+[`SPEC.md`](SPEC.md) for the normative specification and
+[`docs/specs/initiatives/INIT-SYSTEMSARCHITECTURESPEC-001/`](docs/specs/initiatives/INIT-SYSTEMSARCHITECTURESPEC-001/)
+for the PRD, TRD, PLAN, and ROADMAP. Semantic diff and change-impact analysis
+(Phase 5) are deferred to v0.2; see SPEC.md §12 for the full non-goals list.
+
+## Packages
+
+| Package | Responsibility |
+|---|---|
+| `sas` | the core semantic graph — Architecture, Node, Relationship, Boundary, Identity, Entitlement, View, ProtocolBinding, Assurance, Extensions |
+| `validate` | referential-integrity checks plus profile-conditional rules (`development`, `deployment`, `security`, `threat-model`, `sre`) |
+| `render` | shared rendering foundation (node grouping, shape/label mapping) used by every renderer |
+| `render/mermaid`, `render/d2`, `render/dot` | view → diagram renderers, each verified against the real `mmdc`/`d2`/`dot` compilers |
+| `catalog` | AWS/GCP/Kubernetes technology display data and HTTP/SQL/MCP operation mappings |
+| `bridge/threatmodel` | exports an Architecture as the system-under-analysis for [Threat Model Spec](https://github.com/grokify/threat-model-spec), verified against its real JSON Schema |
+| `assure` | assurance-reference coverage reporting (tests, metrics, detections, deployment) |
+| `cli` | business logic shared by every CLI command |
+| `cmd/sas` | thin Cobra adapter over `cli` |
+| `schema` | generated, embedded JSON Schema (`//go:embed`), linted with `schemakit --property-case camelCase` |
+| `ts` | generated Zod/TypeScript types, conforming to the same fixture corpus as the Go model |
+
+## CLI
+
+```text
+sas validate <architecture.json> [--profile development,deployment,security,threat-model,sre] [--format console|json]
+sas view <architecture.json> [--view <id> | --group-by --include-kinds --include-relations --include-boundaries] --format mermaid|d2|dot
+sas bind <architecture.json> --pidl <protocol.json> [--format console|json]
+sas export threat-model <architecture.json>
+sas assure <architecture.json> [--format console|json]
+```
+
+`sas validate --profile security` is the launch-readiness gate: run it before
+a system with internet-facing traffic goes to production (see SPEC.md §10.1).
+
+## Example
+
+[`examples/dogfood/acme-widgets.json`](examples/dogfood/acme-widgets.json) is a
+fictional storefront (browser actor, API, orders database, payment provider,
+GitHub OAuth login) exercising the full field surface — boundaries, views, a
+PIDL binding, and launch-readiness-clean relationships:
+
+```sh
+go run ./cmd/sas validate examples/dogfood/acme-widgets.json --profile security
+go run ./cmd/sas view examples/dogfood/acme-widgets.json --view context --format d2
+```
 
 ## Design principles
 
