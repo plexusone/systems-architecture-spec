@@ -1,0 +1,1453 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A statically-typed-friendly, Go-first specification for describing software systems as semantic graphs">
+      
+      
+      
+        <link rel="canonical" href="https://plexusone.github.io/systems-architecture-spec/specs/initiatives/INIT-SYSTEMSARCHITECTURESPEC-001/TRD/">
+      
+      
+        <link rel="prev" href="../PRD/">
+      
+      
+        <link rel="next" href="../PLAN/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>TRD - Systems Architecture Spec</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://plexusone.dev/css/plexusone-mkdocs.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#trd-systems-architecture-spec-machine-readable-system-contract-sas-v01" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+<!-- PlexusOne Unified Navigation -->
+<div id="plexus-nav-root"></div>
+<script src="https://plexusone.dev/js/plexus-nav.js"></script>
+
+
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Systems Architecture Spec" class="md-header__button md-logo" aria-label="Systems Architecture Spec" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Systems Architecture Spec
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              TRD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/plexusone/systems-architecture-spec" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    plexusone/systems-architecture-spec
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Systems Architecture Spec" class="md-nav__button md-logo" aria-label="Systems Architecture Spec" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Systems Architecture Spec
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/plexusone/systems-architecture-spec" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    plexusone/systems-architecture-spec
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../spec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Initiative
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Initiative
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PRD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PRD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TRD
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TRD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-graph-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Graph Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Graph Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relationship" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boundary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identity-entitlement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identity &amp; Entitlement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protocolbinding-pidl-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ProtocolBinding (PIDL integration)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-references-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External References &amp; Extensions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assurance-evidence-references-only-in-v01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assurance (evidence references only in v0.1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#views-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Views &amp; Profiles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation-rules-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation Rules Engine
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threat-model-spec-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Threat Model Spec Bridge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#semantic-diff-change-impact-ships-post-v01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Semantic Diff &amp; Change Impact (ships post-v0.1)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#renderers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Renderers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calm-interop-out-of-scope-demand-driven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CALM Interop (out of scope; demand-driven)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository Layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conformance-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conformance &amp; Testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PLAN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ROADMAP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ROADMAP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Releases
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Releases
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../releases/v0.1.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v0.1.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-graph-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Graph Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Graph Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relationship" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boundary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identity-entitlement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identity &amp; Entitlement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protocolbinding-pidl-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ProtocolBinding (PIDL integration)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-references-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External References &amp; Extensions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assurance-evidence-references-only-in-v01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assurance (evidence references only in v0.1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#views-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Views &amp; Profiles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation-rules-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation Rules Engine
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threat-model-spec-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Threat Model Spec Bridge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#semantic-diff-change-impact-ships-post-v01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Semantic Diff &amp; Change Impact (ships post-v0.1)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#renderers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Renderers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calm-interop-out-of-scope-demand-driven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CALM Interop (out of scope; demand-driven)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository Layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conformance-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conformance &amp; Testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="trd-systems-architecture-spec-machine-readable-system-contract-sas-v01">TRD — Systems Architecture Spec — Machine-Readable System Contract (SAS v0.1)<a class="headerlink" href="#trd-systems-architecture-spec-machine-readable-system-contract-sas-v01" title="Permanent link">&para;</a></h1>
+<p><strong>Initiative:</strong> <code>INIT-SYSTEMSARCHITECTURESPEC-001</code></p>
+<h2 id="architecture-overview">Architecture Overview<a class="headerlink" href="#architecture-overview" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Go structs (source of truth)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>      │ invopop/jsonschema
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>      ▼
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>JSON Schema  ──  schemakit lint --property-case camelCase  ──  //go:embed
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>      │
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>      ▼
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>Canonical JSON (interchange contract)
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>      │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>      ├──► Zod schemas + TypeScript types (conformance target)
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>      ├──► Renderers: Mermaid / D2 / Graphviz DOT
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>      ├──► Semantic diff → Change Impact IR → compliance profiles
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>      └──► CALM import/export adapters
+</code></pre></div>
+<p>JSON Schema validates the wire contract; it must never become a second type system. The generated schema stays within the PlexusOne static-type profile: no <code>oneOf</code>/<code>anyOf</code>/<code>allOf</code>/<code>not</code>/conditional schemas, homogeneous arrays, deterministic property types, explicit discriminated fields for polymorphism.</p>
+<h2 id="core-graph-model">Core Graph Model<a class="headerlink" href="#core-graph-model" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">Architecture</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nx">Version</span><span class="w">       </span><span class="kt">string</span><span class="w">            </span><span class="s">`json:&quot;version&quot;`</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nx">Metadata</span><span class="w">      </span><span class="nx">Metadata</span><span class="w">          </span><span class="s">`json:&quot;metadata,omitempty&quot;`</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nx">Nodes</span><span class="w">         </span><span class="p">[]</span><span class="nx">Node</span><span class="w">            </span><span class="s">`json:&quot;nodes&quot;`</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nx">Relationships</span><span class="w"> </span><span class="p">[]</span><span class="nx">Relationship</span><span class="w">    </span><span class="s">`json:&quot;relationships&quot;`</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nx">Boundaries</span><span class="w">    </span><span class="p">[]</span><span class="nx">Boundary</span><span class="w">        </span><span class="s">`json:&quot;boundaries,omitempty&quot;`</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nx">Bindings</span><span class="w">      </span><span class="p">[]</span><span class="nx">ProtocolBinding</span><span class="w"> </span><span class="s">`json:&quot;bindings,omitempty&quot;`</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nx">Views</span><span class="w">         </span><span class="p">[]</span><span class="nx">View</span><span class="w">            </span><span class="s">`json:&quot;views,omitempty&quot;`</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="node">Node<a class="headerlink" href="#node" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">Node</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="nx">ID</span><span class="w">          </span><span class="kt">string</span><span class="w">       </span><span class="s">`json:&quot;id&quot;`</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nx">Kind</span><span class="w">        </span><span class="nx">NodeKind</span><span class="w">     </span><span class="s">`json:&quot;kind&quot;`</span><span class="w"> </span><span class="c1">// e.g. &quot;service&quot;, &quot;gateway&quot;, &quot;compute.function&quot;, &quot;data.database&quot;, &quot;agent&quot;, &quot;mcp_server&quot;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nx">Name</span><span class="w">        </span><span class="kt">string</span><span class="w">       </span><span class="s">`json:&quot;name&quot;`</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nx">Owner</span><span class="w">       </span><span class="kt">string</span><span class="w">       </span><span class="s">`json:&quot;owner,omitempty&quot;`</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nx">Technology</span><span class="w">  </span><span class="o">*</span><span class="nx">Technology</span><span class="w">  </span><span class="s">`json:&quot;technology,omitempty&quot;`</span><span class="w"> </span><span class="c1">// {provider: &quot;aws&quot;, service: &quot;lambda&quot;}</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nx">Identity</span><span class="w">    </span><span class="o">*</span><span class="nx">Identity</span><span class="w">    </span><span class="s">`json:&quot;identity,omitempty&quot;`</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="nx">Boundaries</span><span class="w">  </span><span class="p">[]</span><span class="kt">string</span><span class="w">     </span><span class="s">`json:&quot;boundaries,omitempty&quot;`</span><span class="w"> </span><span class="c1">// IDs; multi-membership, no single hierarchy</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="nx">Criticality</span><span class="w"> </span><span class="kt">string</span><span class="w">       </span><span class="s">`json:&quot;criticality,omitempty&quot;`</span><span class="w"> </span><span class="c1">// tier0, tier1, ...</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="nx">Assurance</span><span class="w">   </span><span class="o">*</span><span class="nx">Assurance</span><span class="w">   </span><span class="s">`json:&quot;assurance,omitempty&quot;`</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="nx">Refs</span><span class="w">        </span><span class="p">[]</span><span class="nx">ExternalRef</span><span class="w"> </span><span class="s">`json:&quot;refs,omitempty&quot;`</span><span class="w">      </span><span class="c1">// OpenAPI, Multi-Agent Spec, Threat Model Spec, IaC</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="nx">Extensions</span><span class="w">  </span><span class="nx">Extensions</span><span class="w">    </span><span class="s">`json:&quot;extensions,omitempty&quot;`</span><span class="w"> </span><span class="c1">// namespaced typed maps (security, sre, agent, compliance)</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">}</span>
+</code></pre></div>
+<p>Kind taxonomy is a dotted vocabulary (<code>compute.function</code>, <code>compute.instance</code>, <code>data.database</code>, <code>messaging.queue</code>, <code>gateway</code>, <code>service</code>, <code>agent</code>, <code>mcp_server</code>, <code>external_service</code>, <code>actor</code>), deliberately small; concrete products come from <code>Technology</code> + catalogs, never new core kinds.</p>
+<h3 id="relationship">Relationship<a class="headerlink" href="#relationship" title="Permanent link">&para;</a></h3>
+<p>The edge is the security-critical object. It must be able to express what most diagram formats collapse into an arrow:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">Relationship</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nx">ID</span><span class="w">            </span><span class="kt">string</span><span class="w">         </span><span class="s">`json:&quot;id&quot;`</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nx">From</span><span class="w">          </span><span class="kt">string</span><span class="w">         </span><span class="s">`json:&quot;from&quot;`</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nx">To</span><span class="w">            </span><span class="kt">string</span><span class="w">         </span><span class="s">`json:&quot;to&quot;`</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nx">Kind</span><span class="w">          </span><span class="nx">RelationKind</span><span class="w">   </span><span class="s">`json:&quot;kind&quot;`</span><span class="w"> </span><span class="c1">// calls | data.access | data_flow | publishes_to | subscribes_to | authenticates_to | authorizes_via | observes | enforces | depends_on | spawns | delegates_to</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nx">Transport</span><span class="w">     </span><span class="o">*</span><span class="nx">Transport</span><span class="w">     </span><span class="s">`json:&quot;transport,omitempty&quot;`</span><span class="w">     </span><span class="c1">// protocol, port, applicationProtocol, encryption</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nx">Operations</span><span class="w">    </span><span class="p">[]</span><span class="nx">Operation</span><span class="w">    </span><span class="s">`json:&quot;operations,omitempty&quot;`</span><span class="w">    </span><span class="c1">// generic verb vocabulary</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="nx">Identity</span><span class="w">      </span><span class="o">*</span><span class="nx">IdentityRef</span><span class="w">   </span><span class="s">`json:&quot;identity,omitempty&quot;`</span><span class="w">      </span><span class="c1">// which identity the caller acts as</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nx">Authorization</span><span class="w"> </span><span class="o">*</span><span class="nx">Authorization</span><span class="w"> </span><span class="s">`json:&quot;authorization,omitempty&quot;`</span><span class="w"> </span><span class="c1">// entitlements</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nx">Data</span><span class="w">          </span><span class="o">*</span><span class="nx">DataFlow</span><span class="w">      </span><span class="s">`json:&quot;data,omitempty&quot;`</span><span class="w">          </span><span class="c1">// classifications, e.g. customer_data, source_code</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="nx">CrossesBoundaries</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="w">   </span><span class="s">`json:&quot;crossesBoundaries,omitempty&quot;`</span><span class="w"> </span><span class="c1">// derived + assertable</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="nx">CriticalPath</span><span class="w">  </span><span class="kt">bool</span><span class="w">           </span><span class="s">`json:&quot;criticalPath,omitempty&quot;`</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="nx">Sync</span><span class="w">          </span><span class="kt">string</span><span class="w">         </span><span class="s">`json:&quot;sync,omitempty&quot;`</span><span class="w">          </span><span class="c1">// sync | async</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="nx">Assurance</span><span class="w">     </span><span class="o">*</span><span class="nx">Assurance</span><span class="w">     </span><span class="s">`json:&quot;assurance,omitempty&quot;`</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="nx">ProtocolRef</span><span class="w">   </span><span class="kt">string</span><span class="w">         </span><span class="s">`json:&quot;protocolRef,omitempty&quot;`</span><span class="w">   </span><span class="c1">// e.g. &quot;pidl://oauth/dpop-authorization-code&quot;</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="nx">Extensions</span><span class="w">    </span><span class="nx">Extensions</span><span class="w">     </span><span class="s">`json:&quot;extensions,omitempty&quot;`</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Operations vocabulary:</strong> generic verbs <code>discover | read | create | update | delete | execute | administer</code> with catalog-supplied specialization mappings (HTTP GET → read; SQL SELECT → read; MCP invoke_tool → execute; Agent spawn/delegate → execute). Views choose the abstraction level; the model stores both when the author supplies specifics.</p>
+<h3 id="boundary">Boundary<a class="headerlink" href="#boundary" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">Boundary</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="nx">ID</span><span class="w">         </span><span class="kt">string</span><span class="w">     </span><span class="s">`json:&quot;id&quot;`</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nx">Kind</span><span class="w">       </span><span class="kt">string</span><span class="w">     </span><span class="s">`json:&quot;kind&quot;`</span><span class="w">         </span><span class="c1">// network | trust | environment | account | region | compliance | organization</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nx">Name</span><span class="w">       </span><span class="kt">string</span><span class="w">     </span><span class="s">`json:&quot;name&quot;`</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nx">Attributes</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="w"> </span><span class="s">`json:&quot;attributes,omitempty&quot;`</span><span class="w"> </span><span class="c1">// e.g. vpc: prod, classification: restricted</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nx">Compliance</span><span class="w"> </span><span class="o">*</span><span class="nx">ComplianceBoundary</span><span class="w"> </span><span class="s">`json:&quot;compliance,omitempty&quot;`</span><span class="w"> </span><span class="c1">// e.g. fedrampBoundary: true, controls: [&quot;SC-7&quot;, ...]</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="nx">Extensions</span><span class="w"> </span><span class="nx">Extensions</span><span class="w"> </span><span class="s">`json:&quot;extensions,omitempty&quot;`</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">}</span>
+</code></pre></div>
+<p>Nodes reference boundaries by ID (many-to-many). "Crossing" is computable: an edge crosses boundary B when exactly one endpoint is a member.</p>
+<h3 id="identity-entitlement">Identity &amp; Entitlement<a class="headerlink" href="#identity-entitlement" title="Permanent link">&para;</a></h3>
+<p>First-class, not buried in attributes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">Identity</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="nx">Type</span><span class="w">      </span><span class="kt">string</span><span class="w"> </span><span class="s">`json:&quot;type&quot;`</span><span class="w"> </span><span class="c1">// human | workload | service | agent | device | external</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nx">Mechanism</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="s">`json:&quot;mechanism,omitempty&quot;`</span><span class="w"> </span><span class="c1">// aws_iam_role | spiffe | oauth_client | oidc | aauth | k8s_service_account | x509 | api_key</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="nx">Ref</span><span class="w">       </span><span class="kt">string</span><span class="w"> </span><span class="s">`json:&quot;ref,omitempty&quot;`</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">}</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="kd">type</span><span class="w"> </span><span class="nx">Entitlement</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="nx">Subject</span><span class="w">    </span><span class="kt">string</span><span class="w">   </span><span class="s">`json:&quot;subject&quot;`</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="nx">Action</span><span class="w">     </span><span class="kt">string</span><span class="w">   </span><span class="s">`json:&quot;action&quot;`</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="nx">Resource</span><span class="w">   </span><span class="kt">string</span><span class="w">   </span><span class="s">`json:&quot;resource&quot;`</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="nx">Conditions</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="w"> </span><span class="s">`json:&quot;conditions,omitempty&quot;`</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="p">}</span>
+</code></pre></div>
+<p>This maps naturally onto IAM systems and OpenFGA/SpiceDB tuples later, without making ReBAC part of the core.</p>
+<h3 id="protocolbinding-pidl-integration">ProtocolBinding (PIDL integration)<a class="headerlink" href="#protocolbinding-pidl-integration" title="Permanent link">&para;</a></h3>
+<p>PIDL models protocols with abstract participants; SAS instantiates them:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">ProtocolBinding</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="nx">ID</span><span class="w">          </span><span class="kt">string</span><span class="w">            </span><span class="s">`json:&quot;id&quot;`</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nx">ProtocolRef</span><span class="w"> </span><span class="kt">string</span><span class="w">            </span><span class="s">`json:&quot;protocolRef&quot;`</span><span class="w"> </span><span class="c1">// &quot;pidl://oauth/dpop-authorization-code&quot;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="nx">Participants</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="w"> </span><span class="s">`json:&quot;participants&quot;`</span><span class="w"> </span><span class="c1">// pidl participant → SAS node ID</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">}</span>
+</code></pre></div>
+<p>The same PIDL OAuth/AAuth/MCP definition binds into many architectures. SAS never duplicates choreography; a lightweight <code>Flow</code> concept is deliberately omitted from v0.1 core in favor of <code>ProtocolBinding</code> + <code>protocolRef</code> on edges.</p>
+<h3 id="external-references-extensions">External References &amp; Extensions<a class="headerlink" href="#external-references-extensions" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">ExternalRef</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="nx">Type</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="s">`json:&quot;type&quot;`</span><span class="w"> </span><span class="c1">// openapi | multi-agent-spec | threat-model-spec | pidl | terraform | otel</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="nx">Ref</span><span class="w">  </span><span class="kt">string</span><span class="w"> </span><span class="s">`json:&quot;ref&quot;`</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">}</span>
+</code></pre></div>
+<p><code>Extensions</code> is a map of namespace → typed extension object (<code>security</code>, <code>sre</code>, <code>compliance</code>, <code>agent</code>). Extension shapes are declared as Go types per namespace — explicit fields, not schema composition. This is the SAS answer to CALM's <code>allOf</code>-based extension model.</p>
+<h3 id="assurance-evidence-references-only-in-v01">Assurance (evidence references only in v0.1)<a class="headerlink" href="#assurance-evidence-references-only-in-v01" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">Assurance</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="nx">Tests</span><span class="w">      </span><span class="p">[]</span><span class="kt">string</span><span class="w"> </span><span class="s">`json:&quot;tests,omitempty&quot;`</span><span class="w">      </span><span class="c1">// test://integration/orders-db-authz</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="nx">Metrics</span><span class="w">    </span><span class="p">[]</span><span class="kt">string</span><span class="w"> </span><span class="s">`json:&quot;metrics,omitempty&quot;`</span><span class="w">    </span><span class="c1">// otel://service/orders-api</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="nx">Detections</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="w"> </span><span class="s">`json:&quot;detections,omitempty&quot;`</span><span class="w"> </span><span class="c1">// siem://rule/DB-UNEXPECTED-WRITE</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="nx">Deployment</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="w"> </span><span class="s">`json:&quot;deployment,omitempty&quot;`</span><span class="w"> </span><span class="c1">// aws://lambda/orders-api</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">}</span>
+</code></pre></div>
+<p>SAS stores pointers to evidence, never the evidence itself. Coverage reporting (which declared elements lack tests/metrics/detections) is computable from the graph; reconciliation against live evidence is out of scope for v0.1.</p>
+<h2 id="views-profiles">Views &amp; Profiles<a class="headerlink" href="#views-profiles" title="Permanent link">&para;</a></h2>
+<p><strong>A view is a query, not a diagram file:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">View</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="nx">ID</span><span class="w">               </span><span class="kt">string</span><span class="w">   </span><span class="s">`json:&quot;id&quot;`</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nx">Name</span><span class="w">             </span><span class="kt">string</span><span class="w">   </span><span class="s">`json:&quot;name&quot;`</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="nx">IncludeKinds</span><span class="w">     </span><span class="p">[]</span><span class="kt">string</span><span class="w"> </span><span class="s">`json:&quot;includeKinds,omitempty&quot;`</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="nx">IncludeRelations</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="w"> </span><span class="s">`json:&quot;includeRelations,omitempty&quot;`</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="nx">IncludeBoundaries</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="w"> </span><span class="s">`json:&quot;includeBoundaries,omitempty&quot;`</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="nx">GroupBy</span><span class="w">          </span><span class="kt">string</span><span class="w">   </span><span class="s">`json:&quot;groupBy,omitempty&quot;`</span><span class="w"> </span><span class="c1">// boundary kind to nest by</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">    </span><span class="nx">Level</span><span class="w">            </span><span class="kt">string</span><span class="w">   </span><span class="s">`json:&quot;level,omitempty&quot;`</span><span class="w">   </span><span class="c1">// generic | specific (operations abstraction)</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>A profile declares which optional semantics become mandatory</strong> (validation, not schema variation):</p>
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>Requires</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>development</td>
+<td>nodes, relationships</td>
+</tr>
+<tr>
+<td>deployment</td>
+<td>technology, boundaries (account/region/network), transport</td>
+</tr>
+<tr>
+<td>security</td>
+<td>identity on boundary-crossing edges, encryption, operations, entitlements on writes</td>
+</tr>
+<tr>
+<td>threat-model</td>
+<td>data classifications, boundary membership, external flags</td>
+</tr>
+<tr>
+<td>sre</td>
+<td>criticality, owner, availability target on tier0/tier1</td>
+</tr>
+<tr>
+<td>fedramp</td>
+<td>compliance boundary membership, control mappings on boundary components</td>
+</tr>
+</tbody>
+</table>
+<p>Profile checks are application-level validation rules over one schema — the schema itself never branches.</p>
+<h2 id="validation-rules-engine">Validation Rules Engine<a class="headerlink" href="#validation-rules-engine" title="Permanent link">&para;</a></h2>
+<p>Rule examples shipped in v0.1:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>tier0 node          → must have owner, availability target, assurance.metrics
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>boundary crossing   → must define transport.encryption and identity (security profile)
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>write operations    → must define authorization.entitlements (security profile)
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>external node edge  → must declare data classifications (threat-model profile)
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>internet-facing     → public endpoints must define authn, TLS, owner,
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>                      data classification (launch-readiness rules)
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>dangling references → node/boundary/binding IDs must resolve
+</code></pre></div>
+<p>Rules are data-driven where practical (rule ID, severity, profile, predicate) so profiles compose. Launch-readiness rules are the go-live gate for portfolio web apps: <code>sas validate --profile security</code> must pass before a vertical app ships to production.</p>
+<h2 id="threat-model-spec-bridge">Threat Model Spec Bridge<a class="headerlink" href="#threat-model-spec-bridge" title="Permanent link">&para;</a></h2>
+<p>SAS supplies the system-under-analysis that <code>grokify/threat-model-spec</code> needs, so threat models never re-describe the system:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>SAS architecture ──► sas export threat-model ──► system-under-analysis
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>                                                  ├── components (nodes)
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>                                                  ├── trust-boundary crossings
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>                                                  ├── data flows + classifications
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>                                                  ├── identities per edge
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>                                                  └── external dependencies
+</code></pre></div>
+<p>The bridge exports facts only; threats, mitigations, and risk reasoning stay in Threat Model Spec, which references SAS IDs (<code>sas_resource</code>, <code>sas_relationship</code>). Dogfooded on the first live-site launches (vertical portfolio apps).</p>
+<h2 id="semantic-diff-change-impact-ships-post-v01">Semantic Diff &amp; Change Impact (ships post-v0.1)<a class="headerlink" href="#semantic-diff-change-impact-ships-post-v01" title="Permanent link">&para;</a></h2>
+<p>The IR must stay diff-expressible from day one (the PRD expressiveness test), but the engine ships in v0.2.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>architecture@baseline ──┐
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>                        ├──► sas diff ──► ChangeSet (typed) ──► ChangeImpact ──► profile classification
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>architecture@proposed ──┘
+</code></pre></div>
+<ul>
+<li><strong>ChangeSet:</strong> typed changes — NodeAdded/Removed/Modified, RelationshipAdded/..., BoundaryMembershipChanged, field-level deltas (authentication mtls→oauth, operations read→read+write, internal→external target).</li>
+<li><strong>ChangeImpact:</strong> semantic classification — <code>NEW_EXTERNAL_DEPENDENCY</code>, <code>AUTHN_MECHANISM_CHANGED</code>, <code>ENTITLEMENT_EXPANSION</code>, <code>NEW_BOUNDARY_CROSSING</code>, <code>DATA_CLASSIFICATION_CHANGE</code>, <code>COMPUTE_MODEL_CHANGED</code>, plus affected boundaries and (via mappings) potentially affected controls.</li>
+<li><strong>Compliance profiles</strong> consume ChangeImpact: the FedRAMP profile emits <code>NO_REVIEW_REQUIRED | CHANGE_ASSESSMENT_REQUIRED | POTENTIAL_SIGNIFICANT_CHANGE</code> with the triggering changes as evidence. The tool produces decision support; classification as an actual significant change is a recorded human decision (<code>Assessment{id, decision, reviewer, evidence}</code>).</li>
+<li><strong>Baselines:</strong> an approved baseline is a named, immutable architecture version; releases reference <code>{baseline, proposed, assessment}</code>.</li>
+</ul>
+<h2 id="renderers">Renderers<a class="headerlink" href="#renderers" title="Permanent link">&para;</a></h2>
+<p>Renderer = pure function <code>(Architecture, View) → string</code>. v0.1 targets: Mermaid (GitHub-native), D2 (best generated-diagram ergonomics), Graphviz DOT (auto-layout for large graphs). Structurizr/C4 and draw.io are explicitly later. Catalogs provide display labels/icon hints (AWS Lambda icon for <code>aws/lambda</code>).</p>
+<h2 id="calm-interop-out-of-scope-demand-driven">CALM Interop (out of scope; demand-driven)<a class="headerlink" href="#calm-interop-out-of-scope-demand-driven" title="Permanent link">&para;</a></h2>
+<p>CALM (FINOS) can never be the foundation: its core uses <code>anyOf</code> (node-type-definition) and recommends <code>allOf</code> for extension, which violates the static-type profile. Adapters are not scheduled in this initiative — CALM adoption is still limited and finance-domain-centric, so <code>sas import calm</code> / <code>sas export calm</code> get scoped as new work only when a real consumer asks. If built: mapping is straightforward at the instance level (Node↔Node, Relationship↔Relationship, Boundary↔deployed-in/composition, Controls↔compliance extension); lossy conversions are reported, never silent; core never depends on CALM shapes.</p>
+<h2 id="cli">CLI<a class="headerlink" href="#cli" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a># v0.1
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>sas validate &lt;arch.json&gt; [--profile security,threat-model]
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>sas view &lt;arch.json&gt; --view security --format d2|mermaid|dot
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>sas bind &lt;arch.json&gt; --pidl &lt;protocol.json&gt;     # verify bindings resolve
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>sas export threat-model &lt;arch.json&gt;              # system-under-analysis for threat-model-spec
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>sas assure &lt;arch.json&gt;                           # assurance-reference coverage report
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a># v0.2+
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>sas diff &lt;base.json&gt; &lt;proposed.json&gt; [--profile fedramp] [--format json]
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a># demand-driven (not scheduled)
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>sas import calm &lt;calm.json&gt; / sas export calm &lt;arch.json&gt;
+</code></pre></div>
+<p>Library-first: all capability in importable packages; <code>cmd/sas</code> is a thin Cobra adapter.</p>
+<h2 id="repository-layout">Repository Layout<a class="headerlink" href="#repository-layout" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>systems-architecture-spec/
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>├── sas/            # core types: architecture, node, relationship, boundary, identity, view, binding
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>├── validate/       # rules engine + profiles
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>├── diff/           # semantic diff, change impact, assessments
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>├── render/
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>│   ├── mermaid/
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>│   ├── d2/
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>│   └── dot/
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>├── catalog/        # technology catalogs (aws, gcp, k8s) + operation mappings
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>├── bridge/
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>│   └── threatmodel/ # system-under-analysis export for threat-model-spec
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>├── schema/         # generated *.schema.json + //go:embed + gen/ (go:build ignore) + tools.go
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>├── ts/             # Zod schemas + TS types + shared fixtures runner
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>├── cmd/sas/        # cobra CLI
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>├── examples/       # real architectures (dogfood) + valid/invalid fixture corpus
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>└── docs/specs/initiatives/INIT-SYSTEMSARCHITECTURESPEC-001/
+</code></pre></div>
+<h2 id="conformance-testing">Conformance &amp; Testing<a class="headerlink" href="#conformance-testing" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Shared fixture corpus (<code>examples/fixtures/{valid,invalid}</code>) exercised by the Go validator, JSON Schema validation, and Zod — behavioral conformance, not just type generation.</li>
+<li>Round-trip test: Go → JSON → (schema validate) → Zod parse → JSON → Go; semantic equality required.</li>
+<li><code>schemakit lint --property-case camelCase</code> in CI, <strong>default profile</strong>, matching established org practice (<code>deppolicy</code>). The <code>scale</code> profile additionally rejects any use of <code>additionalProperties</code> as a value schema — including the strict, homogeneous <code>map[string]string</code> on <code>Boundary.Attributes</code> — which is a stronger bar than the static-type-friendly principle requires: the principle bans dynamic, heterogeneous, ambiguous shapes (<code>map[string]any</code>, unions), not a fixed-value-type map that Go, Rust, and TypeScript (<code>Record&lt;string,string&gt;</code>) all represent identically and unambiguously.</li>
+<li><code>tools.go</code> with <code>//go:build tools</code> blank imports so <code>go mod tidy</code> keeps the schema generator's deps (standard gen/main.go pattern).</li>
+<li>TypeScript/Zod generation follows the proven <code>multi-agent-spec</code> pipeline: <code>json-schema-to-zod</code> per <code>$def</code> (topologically ordered, refs inlined for self-contained output) plus one generation pass for the root document type, keyed by name (<code>ArchitectureSchema</code>) since <code>invopop/jsonschema</code>'s <code>ExpandedStruct: true</code> inlines the root type's own properties rather than emitting it as a named <code>$def</code>.</li>
+</ul>
+<h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h2>
+<p>Cobra (CLI), <code>invopop/jsonschema</code> (schema generation), <code>grokify/schemakit</code> (lint, dev/CI tool). Verify latest versions before adding. No runtime dependency on PIDL/Threat Model Spec/Multi-Agent Spec — references are by URI; optional typed helpers may import their types later.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/plexusone/systems-architecture-spec" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
