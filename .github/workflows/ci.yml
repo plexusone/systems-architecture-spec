@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  go:
+    name: Go test, vet, lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26.5"
+      - run: go build ./...
+      - run: go vet ./...
+      - run: go test ./...
+      - uses: golangci/golangci-lint-action@v6
+        with:
+          version: v2.13.2
+
+  schema-lint:
+    name: schemakit lint (JSON Schema, camelCase)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26.5"
+      - run: go install github.com/grokify/schemakit/cmd/schemakit@latest
+      - run: schemakit lint --property-case camelCase schema/architecture.schema.json
+
+  ts-conformance:
+    name: TypeScript/Zod conformance
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ts
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
