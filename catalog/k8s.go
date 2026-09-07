@@ -2,7 +2,7 @@ package catalog
 
 // k8sDisplayNames maps Kubernetes resource kinds (sas.Technology.Service
 // when Provider is "k8s") to their human-friendly names.
-var k8sDisplayNames = map[string]string{
+var k8sDisplayNames = map[string]string{ //nolint:gosec // display-name lookup table, not a credential
 	"deployment":  "Kubernetes Deployment",
 	"statefulset": "Kubernetes StatefulSet",
 	"daemonset":   "Kubernetes DaemonSet",

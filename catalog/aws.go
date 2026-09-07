@@ -2,7 +2,7 @@ package catalog
 
 // awsDisplayNames maps AWS service identifiers (sas.Technology.Service
 // when Provider is "aws") to their human-friendly product names.
-var awsDisplayNames = map[string]string{
+var awsDisplayNames = map[string]string{ //nolint:gosec // display-name lookup table, not a credential
 	"lambda":          "AWS Lambda",
 	"ecs":             "Amazon ECS",
 	"eks":             "Amazon EKS",
