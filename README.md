@@ -4,6 +4,7 @@
 [![Go Lint][go-lint-svg]][go-lint-url]
 [![Go SAST][go-sast-svg]][go-sast-url]
 [![Docs][docs-godoc-svg]][docs-godoc-url]
+[![Docs][docs-mkdoc-svg]][docs-mkdoc-url]
 [![Visualization][viz-svg]][viz-url]
 [![License][license-svg]][license-url]
 
@@ -16,7 +17,7 @@
  [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/plexusone/systems-architecture-spec
  [docs-godoc-url]: https://pkg.go.dev/github.com/plexusone/systems-architecture-spec
  [docs-mkdoc-svg]: https://img.shields.io/badge/docs-guide-blue.svg
- [docs-mkdoc-url]: https://plexusone.github.io/systems-architecture-spec
+ [docs-mkdoc-url]: https://plexusone.dev/systems-architecture-spec
  [viz-svg]: https://img.shields.io/badge/repo-visualization-blue.svg
  [viz-url]: https://mango-dune-07a8b7110.1.azurestaticapps.net/?repo=plexusone%2Fsystems-architecture-spec
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg

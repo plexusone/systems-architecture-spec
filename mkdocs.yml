@@ -1,0 +1,64 @@
+site_name: Systems Architecture Spec
+site_description: A statically-typed-friendly, Go-first specification for describing software systems as semantic graphs
+site_url: https://plexusone.github.io/systems-architecture-spec/
+repo_url: https://github.com/plexusone/systems-architecture-spec
+repo_name: plexusone/systems-architecture-spec
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  palette:
+    # Dark mode first (PlexusOne default)
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+
+extra_css:
+  - https://plexusone.dev/css/plexusone-mkdocs.css
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.snippets:
+      base_path: ["."]
+      check_paths: true
+  - admonition
+  - pymdownx.details
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Specification: spec.md
+  - Initiative:
+      - PRD: specs/initiatives/INIT-SYSTEMSARCHITECTURESPEC-001/PRD.md
+      - TRD: specs/initiatives/INIT-SYSTEMSARCHITECTURESPEC-001/TRD.md
+      - PLAN: specs/initiatives/INIT-SYSTEMSARCHITECTURESPEC-001/PLAN.md
+      - ROADMAP: specs/initiatives/INIT-SYSTEMSARCHITECTURESPEC-001/ROADMAP.md
+  - Changelog: changelog.md
+  - Releases:
+      - v0.1.0: releases/v0.1.0.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/plexusone/systems-architecture-spec

@@ -22,3 +22,6 @@ cmd/sas/sas
 # Node / TypeScript
 node_modules/
 ts/dist/
+
+# MkDocs build output
+site/
